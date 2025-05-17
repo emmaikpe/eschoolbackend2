@@ -1,16 +1,9 @@
 
 require('dotenv').config({path: __dirname + '/.env'})
-//const moment = require('moment'); // For date formatting
-//var crypto = require('crypto');
-//var salt = process.env.SALT_VALUE;
-//function hashPassword(password) {
-  
- // return crypto.pbkdf2Sync(password, Buffer.from(salt, 'base64'), 10000, 16, 'sha1');
-//}
-// server.js
+
 
 const express = require('express');
-const path = require('path');
+
 const sql = require('mssql');
 const bodyParser = require('body-parser');
 
@@ -18,7 +11,7 @@ const bodyParser = require('body-parser');
 
 
 
-// require('dotenv').config(); // Load environment variables from .env file
+
 
 // Create an Express application
 const app = express();
