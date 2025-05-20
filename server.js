@@ -90,7 +90,9 @@ app.get('/api/questions', async (req, res) => {
             'domain5',
             'domain6',
             'domain7',
-            'domain8'
+            'domain8',
+            'cbt',
+             'test'
         ];
 // Validate the type to prevent SQL injection
 if (!allowedTables.includes(type)) {
@@ -101,7 +103,7 @@ if (!allowedTables.includes(type)) {
     await checkPoolConnection(); // Ensure the connection is active
     const sql = await poolPromise;
      const query=`SELECT * FROM [${type}]`;
-     console.log(`[${type}]`);
+     // console.log(`[${type}]`);
         const result = await sql.query(query);
         res.json(result.recordset);
     } catch (err) {
