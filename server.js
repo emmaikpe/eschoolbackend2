@@ -107,7 +107,7 @@ if (!allowedTables.includes(type)) {
         const result = await sql.query(query);
         res.json(result.recordset);
     } catch (err) {
-        console.error(err);
+        //console.error(err);
         res.status(500).send(query);
         //res.status(500).send('Server Error');
     }
