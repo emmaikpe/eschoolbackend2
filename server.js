@@ -108,7 +108,8 @@ if (!allowedTables.includes(type)) {
         res.json(result.recordset);
     } catch (err) {
         console.error(err);
-        res.status(500).send('Server Error');
+        res.status(500).send('err');
+        //res.status(500).send('Server Error');
     }
 });
 
