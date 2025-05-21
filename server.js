@@ -21,9 +21,9 @@ app.use(express.json());
 //handle cross-origin resource sharing
 const cors = require('cors');
 app.use(cors(
-   {
-  origin: 'http://localhost:3000', 
- }
+  // {
+  //origin: 'http://localhost:3000', 
+ //}
 )); // Enable CORS for all routes
 app.use(bodyParser.json({ limit: '100mb' })); // Adjust size if needed
 
