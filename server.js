@@ -7,6 +7,7 @@ const questionRoutes = require('./routes/questions');
 const app = express();
 
 // Middleware
+const cors = require('cors'); // enable CORS for all routes
 app.use(cors({
 //   origin: process.env.FRONTEND_URL || 'http://localhost:3000'
 }));
