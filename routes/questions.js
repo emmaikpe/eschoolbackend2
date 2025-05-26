@@ -6,6 +6,7 @@ const multer = require('multer');
 const upload = multer({ storage: multer.memoryStorage() });
 const { getPool, sql } = require('../db');
 
+const cors = require('cors');
 // Add new question (with image)
 router.post('/add', upload.single('image'), async (req, res) => {
   const { question, optionA, optionB, optionC, optionD, correctAnswer,explanation, type } = req.body;
