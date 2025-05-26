@@ -1,11 +1,15 @@
 
 require('dotenv').config({path: __dirname + '/.env'})
+
+
 const express = require('express');
+
 const sql = require('mssql');
 const bodyParser = require('body-parser');
-const router = express.Router();
-const multer = require('multer');
-const upload = multer({ storage: multer.memoryStorage() });
+
+
+
+
 
 
 
@@ -18,8 +22,8 @@ app.use(express.json());
 const cors = require('cors');
 app.use(cors(
   // {
-  // origin: 'http://localhost:3000', 
-// }
+  //origin: 'http://localhost:3000', 
+ //}
 )); // Enable CORS for all routes
 app.use(bodyParser.json({ limit: '100mb' })); // Adjust size if needed
 
@@ -99,11 +103,11 @@ if (!allowedTables.includes(type)) {
     await checkPoolConnection(); // Ensure the connection is active
     const sql = await poolPromise;
      const query=`SELECT * FROM [${type}]`;
-    //  console.log(`[${type}]`);
+     // console.log(`[${type}]`);
         const result = await sql.query(query);
         res.json(result.recordset);
     } catch (err) {
-        console.error(err);
+        //console.error(err);
         res.status(500).send('Server Error');
     }
 });
