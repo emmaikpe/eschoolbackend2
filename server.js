@@ -8,7 +8,7 @@ const app = express();
 
 // Middleware
 app.use(cors({
-    origin: ['http://localhost:3000', 'https://gowfin.github.io']
+    origin: ['http://localhost:3000', 'https://gowfin.github.io','https://cbt.ohafiamicrofinancebankplc.com']
 }));
 app.use(express.json({ limit: '50mb' }));
 app.use(express.urlencoded({ extended: true }));
