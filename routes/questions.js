@@ -6,7 +6,6 @@ const multer = require('multer');
 const upload = multer({ storage: multer.memoryStorage() });
 const { getPool, sql } = require('../db');
 
-const cors = require('cors');
 // Add new question (with image)
 router.post('/add', upload.single('image'), async (req, res) => {
   const { question, optionA, optionB, optionC, optionD, correctAnswer,explanation, type } = req.body;
@@ -78,8 +77,7 @@ router.get('/', async (req, res) => {
             .query(`SELECT * FROM ${type}`); 
 
 
-// console.log('Recordset type:', typeof result.recordset);
-// console.log('Recordset contents:', result.recordset);
+
  res.json(result.recordset);
         // Format response
         // const questions = result.recordset.map(q => ({
@@ -201,7 +199,6 @@ router.post('/import', upload.single('excelFile'), async (req, res) => {
     });
   }
 });
-
 
 module.exports = router;
 
