@@ -31,6 +31,67 @@ app.use('/api/scores/import', limiter);
 app.get('/', (req, res) => {
   res.send('Quiz API Running');
 });
+
+
+// Student ID
+app.get('/students/:id', async(req, res) => {
+  const studentId = req.params.id;
+
+  try {
+    const pool = await getPool();
+    const result = await pool.request()
+      .input('studentId', sql.VarChar, studentId)
+      .query(`
+        SELECT StudentId, StudentName
+        FROM student
+        WHERE StudentId = @studentId
+      `);
+
+    if (result.recordset.length > 0) {
+      // Student exists
+      res.json({
+        exists: true,
+        student: result.recordset[0]
+      });
+    } else {
+      // Student not found
+      res.status(404).json({ exists: false });
+    }
+  } catch (err) {
+    console.error('Error checking student:', err);
+    res.status(500).json({ exists: false, error: err.message });
+  }
+});
+
+// get scores
+app.get('/scores/:id', async(req, res) => {
+  const studentId = req.params.id.toString();
+  
+  try {
+    const pool = await getPool();
+    const result = await pool.request()
+      .input('studentId', sql.VarChar, studentId)
+      .query(`
+        SELECT *
+        FROM score
+        WHERE StudentId =@studentId
+      `);
+
+    if (result.recordset.length > 0) {
+      // Student exists
+      res.json({
+        exists: true,
+        scores: result.recordset
+      });
+    } else {
+      // Student not found
+      res.status(404).json({ exists: false });
+    }
+  } catch (err) {
+    console.error('Error checking scores:', err);
+    res.status(500).json({ exists: false, error: err.message });
+  }
+});
 app.post('/save',async(req,res)=>{
   const {score,name,course}=req.body;
   const semester = new Date().toISOString().slice(0, 10);
