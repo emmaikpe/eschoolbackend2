@@ -72,8 +72,8 @@ app.get('/scores/:id', async(req, res) => {
     const result = await pool.request()
       .input('studentId', sql.VarChar, studentId)
       .query(`
-        SELECT *
-        FROM score
+        SELECT StudentId,	s.CourseCode,	Score,Semester,CourseTitle as CourseName
+        FROM score s inner join course c on s.CourseCode=C.CourseCode
         WHERE StudentId =@studentId
       `);
 
